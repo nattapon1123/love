@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: radial-gradient(circle, #ffd1dc, #ff69b4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .message {
+        position: absolute;
+        text-align: center;
+        color: white;
+        font-size: 3em;
+        font-weight: bold;
+        text-shadow: 0 0 15px hotpink;
+        z-index: 10;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px pink; }
+        to { text-shadow: 0 0 25px deeppink; }
+    }
+
+    .heart {
+        position: absolute;
+        width: 100px;
+        height: 90px;
+        background: pink;
+        transform: rotate(-45deg);
+        animation: expand 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 90px;
+        background: pink;
+        border-radius: 50%;
+    }
+
+    .heart::before {
+        top: -50px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: 50px;
+        top: 0;
+    }
+
+    @keyframes expand {
+        0% {
+            transform: scale(0) rotate(-45deg);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(8) rotate(-45deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="message">
+    รักเธอที่สุดนะ ❤️<br>
+    อยู่ด้วยกันนานๆนะคนดี 💕
+</div>
+
+<script>
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+
+    const pinks = ["#ff69b4", "#ff1493", "#ff85c1", "#ffb6c1"];
+    const color = pinks[Math.floor(Math.random() * pinks.length)];
+
+    heart.style.background = color;
+    heart.style.left = "50%";
+    heart.style.top = "50%";
+    heart.style.transform = "translate(-50%, -50%) rotate(-45deg)";
+
+    heart.style.setProperty("--color", color);
+
+    document.body.appendChild(heart);
+
+    heart.style.setProperty("animation", "expand 6s linear");
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
