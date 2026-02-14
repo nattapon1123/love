@@ -37,7 +37,7 @@
         height: 90px;
         background: pink;
         transform: rotate(-45deg);
-        animation: expand 6s linear infinite;
+        animation: expand 6s linear forwards;
         opacity: 0.8;
     }
 
@@ -47,7 +47,7 @@
         position: absolute;
         width: 100px;
         height: 90px;
-        background: pink;
+        background: inherit;
         border-radius: 50%;
     }
 
@@ -76,39 +76,56 @@
 <body>
 
 <div class="message">
-       รักเธอที่สุดนะค้าบบ ❤️<br>
-    อยู่ด้วยกันนานๆนะค้าบจุ๊บๆ 💕
+    รักเธอที่สุดนะ ❤️<br>
+    อยู่ด้วยกันนานๆนะคนดี 💕
 </div>
 
 <script>
-function createHeart() {
+const colors = ["#ff69b4", "#ff1493", "#ff85c1", "#ffb6c1"];
+
+function createHeart(x, y) {
     const heart = document.createElement("div");
     heart.className = "heart";
 
-    const pinks = ["#ff69b4", "#ff1493", "#ff85c1", "#ffb6c1"];
-    const color = pinks[Math.floor(Math.random() * pinks.length)];
-
+    const color = colors[Math.floor(Math.random() * colors.length)];
     heart.style.background = color;
-    heart.style.left = "50%";
-    heart.style.top = "50%";
+
+    heart.style.left = x;
+    heart.style.top = y;
     heart.style.transform = "translate(-50%, -50%) rotate(-45deg)";
 
-    heart.style.setProperty("--color", color);
-
     document.body.appendChild(heart);
-
-    heart.style.setProperty("animation", "expand 6s linear");
 
     setTimeout(() => {
         heart.remove();
     }, 6000);
 }
 
-setInterval(createHeart, 800);
+// กลางจอ
+setInterval(() => {
+    createHeart("50%", "50%");
+}, 800);
+
+// มุมซ้ายบน
+setInterval(() => {
+    createHeart("0%", "0%");
+}, 1500);
+
+// มุมขวาบน
+setInterval(() => {
+    createHeart("100%", "0%");
+}, 1500);
+
+// มุมซ้ายล่าง
+setInterval(() => {
+    createHeart("0%", "100%");
+}, 1500);
+
+// มุมขวาล่าง
+setInterval(() => {
+    createHeart("100%", "100%");
+}, 1500);
 </script>
 
 </body>
 </html>
-
-
-
